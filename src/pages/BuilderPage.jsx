@@ -82,7 +82,7 @@ export default function BuilderPage() {
   const progressPct = ((currentStep - 1) / (STEPS.length - 1)) * 100
 
   return (
-    <div className="h-screen flex flex-col bg-background overflow-hidden">
+    <div className="h-screen flex flex-col bg-background overflow-hidden relative z-0">
       {/* Top bar */}
       <header className="flex-shrink-0 h-14 bg-surface border-b border-border flex items-center px-4 gap-3 z-10">
         <Link to="/" className="flex items-center gap-1.5 text-text-secondary hover:text-foreground transition-colors mr-1">
@@ -272,7 +272,7 @@ export default function BuilderPage() {
       </div>
 
       {/* Hidden full-size export element */}
-      <div className="absolute top-[-9999px] left-[-9999px]">
+      <div className="absolute top-0 left-0 z-[-1] pointer-events-none" style={{ width: '794px' }}>
         <ResumePreview data={resumeData} id="resume-export" />
       </div>
     </div>
