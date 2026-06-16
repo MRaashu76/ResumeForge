@@ -13,7 +13,6 @@ export async function exportToPDF(elementId, filename = 'resume.pdf') {
     const canvas = await html2canvas(element, {
       scale: 2,
       useCORS: true,
-      allowTaint: true,
       backgroundColor: '#ffffff',
       width: element.scrollWidth,
       height: element.scrollHeight,
