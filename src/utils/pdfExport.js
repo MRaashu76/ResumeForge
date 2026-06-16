@@ -49,13 +49,18 @@ export async function exportToPDF(elementId, filename = 'resume.pdf') {
       const pageHeightInPx = (pdfHeight * imgWidth) / pdfWidth
 
       while (y < imgHeight) {
+        const currentHeight = Math.min(pageHeightInPx, imgHeight - y)
+        if (currentHeight <= 1) break // Prevent 0px height canvas from fractional pixel remainders
+
         const pageCanvas = document.createElement('canvas')
         pageCanvas.width = imgWidth
-        pageCanvas.height = Math.min(pageHeightInPx, imgHeight - y)
+        pageCanvas.height = currentHeight
         const ctx = pageCanvas.getContext('2d')
         ctx.drawImage(canvas, 0, -y)
+        
         const pageImg = pageCanvas.toDataURL('image/jpeg', 0.98)
         if (y > 0) pdf.addPage()
+        
         pdf.addImage(pageImg, 'JPEG', 0, 0, pdfWidth, (pageCanvas.height * pdfWidth) / imgWidth)
         y += pageHeightInPx
       }
