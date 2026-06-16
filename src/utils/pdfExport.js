@@ -19,6 +19,10 @@ export async function exportToPDF(elementId, filename = 'resume.pdf') {
       windowWidth: element.scrollWidth,
     })
 
+    if (canvas.width === 0 || canvas.height === 0) {
+      throw new Error('Generated canvas is 0x0. The browser may have optimized the element out of layout.')
+    }
+
     const imgData = canvas.toDataURL('image/jpeg', 0.98)
     const pdf = new jsPDF({
       orientation: 'portrait',
