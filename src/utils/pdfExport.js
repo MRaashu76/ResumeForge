@@ -8,9 +8,10 @@ export async function exportToPDF(elementId, filename = 'resume.pdf') {
     return false
   }
 
+  let canvas = null
   try {
     // A4 dimensions in pixels at 96dpi: 794 x 1123
-    const canvas = await html2canvas(element, {
+    canvas = await html2canvas(element, {
       scale: 2,
       useCORS: true,
       backgroundColor: '#ffffff',
@@ -30,8 +31,8 @@ export async function exportToPDF(elementId, filename = 'resume.pdf') {
       format: 'a4',
     })
 
-    const pdfWidth = pdf.internal.pageSize.getWidth()
-    const pdfHeight = pdf.internal.pageSize.getHeight()
+    const pdfWidth = pdf.internal.pageSize?.width || pdf.internal.pageSize.getWidth()
+    const pdfHeight = pdf.internal.pageSize?.height || pdf.internal.pageSize.getHeight()
 
     const imgWidth = canvas.width
     const imgHeight = canvas.height
@@ -64,7 +65,7 @@ export async function exportToPDF(elementId, filename = 'resume.pdf') {
     return true
   } catch (err) {
     console.error('PDF export failed:', err)
-    alert('PDF Export Failed: ' + err.message)
+    alert(`PDF Export Failed: ${err.message}\nDebug Info: canvas(${canvas?.width}x${canvas?.height})`)
     return false
   }
 }
