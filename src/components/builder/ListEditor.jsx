@@ -47,7 +47,7 @@ export default function ListEditor({ items, onAdd, onUpdate, onDelete, renderFor
     <div className="space-y-3">
       {/* Existing items */}
       {items.length === 0 && !isAdding && (
-        <div className="text-center py-8 text-slate-400 text-sm border-2 border-dashed border-slate-200 rounded-xl">
+        <div className="text-center py-8 text-text-secondary text-sm border-2 border-dashed border-border rounded-xl">
           {emptyText || 'No entries yet. Click below to add one.'}
         </div>
       )}
@@ -70,14 +70,14 @@ export default function ListEditor({ items, onAdd, onUpdate, onDelete, renderFor
               <div className="flex gap-1 flex-shrink-0">
                 <button
                   onClick={() => startEdit(item)}
-                  className="p-1.5 text-slate-400 hover:text-primary hover:bg-blue-50 rounded-lg transition-colors"
+                  className="p-1.5 text-text-secondary hover:text-primary hover:bg-blue-50 rounded-lg transition-colors"
                   aria-label="Edit"
                 >
                   <Pencil size={13} />
                 </button>
                 <button
                   onClick={() => handleDelete(item.id)}
-                  className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                  className="p-1.5 text-text-secondary hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
                   aria-label="Delete"
                 >
                   <Trash2 size={13} />

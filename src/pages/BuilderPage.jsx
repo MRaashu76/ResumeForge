@@ -14,6 +14,7 @@ import ProjectsStep from '../components/builder/ProjectsStep'
 import SkillsStep from '../components/builder/SkillsStep'
 import CertificationsStep from '../components/builder/CertificationsStep'
 import TemplateStep from '../components/builder/TemplateStep'
+import ThemeToggle from '../components/ui/ThemeToggle'
 
 const STEPS = [
   { id: 1, label: 'Personal', shortLabel: 'Info' },
@@ -83,41 +84,39 @@ export default function BuilderPage() {
   return (
     <div className="h-screen flex flex-col bg-background overflow-hidden">
       {/* Top bar */}
-      <header className="flex-shrink-0 h-14 bg-white border-b border-border flex items-center px-4 gap-3 z-10">
-        <Link to="/" className="flex items-center gap-1.5 text-slate-400 hover:text-secondary transition-colors mr-1">
+      <header className="flex-shrink-0 h-14 bg-surface border-b border-border flex items-center px-4 gap-3 z-10">
+        <Link to="/" className="flex items-center gap-1.5 text-text-secondary hover:text-foreground transition-colors mr-1">
           <ArrowLeft size={16} />
           <span className="text-sm hidden sm:inline">Back</span>
         </Link>
 
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-            <Zap size={13} className="text-white" />
-          </div>
-          <span className="font-bold text-secondary text-sm hidden sm:inline">ResumeForge</span>
+          <span className="font-bold text-foreground text-sm hidden sm:inline">ResumeForge</span>
         </div>
 
         <div className="flex-1 mx-2 hidden md:block">
           <div className="max-w-xs">
-            <div className="flex justify-between text-xs text-slate-400 mb-1">
+            <div className="flex justify-between text-xs text-text-secondary mb-1">
               <span>Step {currentStep} of {STEPS.length}: {STEPS[currentStep - 1].label}</span>
               <span>{Math.round(progressPct)}%</span>
             </div>
-            <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+            <div className="h-1.5 bg-background rounded-full overflow-hidden">
               <div className="h-full bg-primary rounded-full transition-all duration-500" style={{ width: `${progressPct}%` }} />
             </div>
           </div>
         </div>
 
         <div className="flex items-center gap-2 ml-auto">
+          <ThemeToggle />
           {lastSaved && (
-            <span className="text-xs text-slate-400 hidden lg:flex items-center gap-1">
+            <span className="text-xs text-text-secondary hidden lg:flex items-center gap-1">
               <Check size={11} className="text-success" /> Saved
             </span>
           )}
 
           <button
             onClick={() => setShowPreview(p => !p)}
-            className="flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-secondary border border-border px-3 py-1.5 rounded-lg hover:bg-slate-50 transition-all md:hidden"
+            className="flex items-center gap-1.5 text-xs font-medium text-text-secondary hover:text-foreground border border-border px-3 py-1.5 rounded-lg hover:bg-card transition-all md:hidden"
           >
             {showPreview ? <EyeOff size={13} /> : <Eye size={13} />}
             {showPreview ? 'Editor' : 'Preview'}
@@ -125,7 +124,7 @@ export default function BuilderPage() {
 
           <button
             onClick={handleClear}
-            className="text-xs font-medium text-slate-500 hover:text-red-500 border border-border px-3 py-1.5 rounded-lg hover:bg-red-50 transition-all flex items-center gap-1.5 hidden sm:flex"
+            className="text-xs font-medium text-text-secondary hover:text-red-500 border border-border px-3 py-1.5 rounded-lg hover:bg-red-900/20 transition-all flex items-center gap-1.5 hidden sm:flex"
           >
             <RotateCcw size={12} />
             <span className="hidden lg:inline">Clear</span>
@@ -137,7 +136,7 @@ export default function BuilderPage() {
             className={`flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm font-semibold transition-all ${
               exportSuccess
                 ? 'bg-success text-white'
-                : 'bg-primary text-white hover:bg-blue-600 shadow-sm'
+                : 'bg-primary text-white hover:bg-primary-hover shadow-[0_0_15px_rgba(249,115,22,0.3)]'
             } disabled:opacity-70`}
           >
             {exporting ? (
@@ -155,13 +154,13 @@ export default function BuilderPage() {
       {/* Main layout */}
       <div className="flex-1 flex overflow-hidden">
         {/* Editor panel */}
-        <div className={`${showPreview ? 'hidden' : 'flex'} md:flex flex-col w-full md:w-[38%] lg:w-[35%] border-r border-border bg-white overflow-y-auto`}>
+        <div className={`${showPreview ? 'hidden' : 'flex'} md:flex flex-col w-full md:w-[38%] lg:w-[35%] border-r border-border bg-surface overflow-y-auto`}>
           {/* Step tabs */}
           <div className="flex-shrink-0 px-4 pt-4">
             {/* Mobile step selector */}
             <div className="flex items-center justify-between mb-4 md:hidden">
-              <span className="text-sm font-semibold text-secondary">Step {currentStep} of {STEPS.length}: {STEPS[currentStep - 1].label}</span>
-              <div className="h-1.5 flex-1 mx-3 bg-slate-100 rounded-full overflow-hidden">
+              <span className="text-sm font-semibold text-foreground">Step {currentStep} of {STEPS.length}: {STEPS[currentStep - 1].label}</span>
+              <div className="h-1.5 flex-1 mx-3 bg-background rounded-full overflow-hidden">
                 <div className="h-full bg-primary rounded-full transition-all" style={{ width: `${progressPct}%` }} />
               </div>
             </div>
@@ -174,8 +173,8 @@ export default function BuilderPage() {
                   onClick={() => setCurrentStep(step.id)}
                   className={`text-xs px-2.5 py-1 rounded-lg font-medium transition-all ${
                     currentStep === step.id
-                      ? 'bg-primary text-white shadow-sm'
-                      : 'text-slate-500 hover:text-secondary hover:bg-slate-100'
+                      ? 'bg-primary text-white shadow-[0_0_15px_rgba(249,115,22,0.3)]'
+                      : 'text-text-secondary hover:text-foreground hover:bg-background'
                   }`}
                 >
                   {step.shortLabel}
@@ -187,7 +186,7 @@ export default function BuilderPage() {
           {/* Step content */}
           <div className="flex-1 px-4 pb-4">
             <div className="mb-4">
-              <h2 className="text-base font-bold text-secondary">{STEPS[currentStep - 1].label}</h2>
+              <h2 className="text-base font-bold text-foreground">{STEPS[currentStep - 1].label}</h2>
             </div>
             {renderStep()}
           </div>
@@ -197,14 +196,14 @@ export default function BuilderPage() {
             <button
               onClick={() => setCurrentStep(s => Math.max(1, s - 1))}
               disabled={currentStep === 1}
-              className="flex items-center gap-1.5 text-sm font-medium text-slate-600 hover:text-secondary disabled:opacity-40 disabled:cursor-not-allowed transition-colors px-4 py-2 rounded-xl hover:bg-slate-100"
+              className="flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-foreground disabled:opacity-40 disabled:cursor-not-allowed transition-colors px-4 py-2 rounded-xl hover:bg-card"
             >
               <ChevronLeft size={15} /> Previous
             </button>
             {currentStep < STEPS.length ? (
               <button
                 onClick={() => setCurrentStep(s => Math.min(STEPS.length, s + 1))}
-                className="flex items-center gap-1.5 text-sm font-semibold text-white bg-primary px-5 py-2 rounded-xl hover:bg-blue-600 transition-all shadow-sm"
+                className="flex items-center gap-1.5 text-sm font-semibold text-foreground bg-primary px-5 py-2 rounded-xl hover:bg-primary-hover transition-all shadow-[0_0_15px_rgba(249,115,22,0.3)]"
               >
                 Next <ChevronRight size={15} />
               </button>
@@ -212,7 +211,7 @@ export default function BuilderPage() {
               <button
                 onClick={handleExport}
                 disabled={exporting}
-                className="flex items-center gap-1.5 text-sm font-semibold text-white bg-success px-5 py-2 rounded-xl hover:bg-green-600 transition-all shadow-sm"
+                className="flex items-center gap-1.5 text-sm font-semibold text-foreground bg-success px-5 py-2 rounded-xl hover:bg-green-600 transition-all shadow-md"
               >
                 <Download size={15} /> Export PDF
               </button>
@@ -221,15 +220,15 @@ export default function BuilderPage() {
         </div>
 
         {/* Preview panel */}
-        <div className={`${showPreview ? 'flex' : 'hidden'} md:flex flex-col flex-1 overflow-hidden bg-slate-100`}>
+        <div className={`${showPreview ? 'flex' : 'hidden'} md:flex flex-col flex-1 overflow-hidden bg-background`}>
           {/* Preview toolbar */}
-          <div className="flex-shrink-0 h-10 bg-white border-b border-border flex items-center px-4 gap-3">
-            <Eye size={13} className="text-slate-400" />
-            <span className="text-xs font-medium text-slate-500">Live Preview</span>
+          <div className="flex-shrink-0 h-10 bg-surface border-b border-border flex items-center px-4 gap-3">
+            <Eye size={13} className="text-text-secondary" />
+            <span className="text-xs font-medium text-text-secondary">Live Preview</span>
             <div className="flex-1" />
 
             {/* Sidebar panels */}
-            <div className="hidden lg:flex items-center gap-3 text-xs text-slate-500 mr-2">
+            <div className="hidden lg:flex items-center gap-3 text-xs text-text-secondary mr-2">
               <span>ATS & Strength panels on left</span>
             </div>
 
@@ -237,14 +236,14 @@ export default function BuilderPage() {
             <div className="flex items-center gap-1">
               <button
                 onClick={() => setZoom(z => Math.max(0.3, z - 0.05))}
-                className="p-1 hover:bg-slate-100 rounded transition-colors text-slate-500"
+                className="p-1 hover:bg-card rounded transition-colors text-text-secondary"
               >
                 <ZoomOut size={13} />
               </button>
-              <span className="text-xs text-slate-400 w-10 text-center">{Math.round(zoom * 100)}%</span>
+              <span className="text-xs text-text-secondary w-10 text-center">{Math.round(zoom * 100)}%</span>
               <button
                 onClick={() => setZoom(z => Math.min(1, z + 0.05))}
-                className="p-1 hover:bg-slate-100 rounded transition-colors text-slate-500"
+                className="p-1 hover:bg-card rounded transition-colors text-text-secondary"
               >
                 <ZoomIn size={13} />
               </button>
@@ -253,7 +252,7 @@ export default function BuilderPage() {
 
           <div className="flex flex-1 overflow-hidden">
             {/* Score panels */}
-            <div className="hidden xl:flex flex-col w-56 flex-shrink-0 border-r border-border bg-white overflow-y-auto">
+            <div className="hidden xl:flex flex-col w-56 flex-shrink-0 border-r border-border bg-surface overflow-y-auto">
               <div className="p-4 border-b border-border">
                 <ATSScorePanel data={resumeData} />
               </div>

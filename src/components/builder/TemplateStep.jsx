@@ -28,7 +28,7 @@ const templates = [
 export default function TemplateStep({ selected, onSelect }) {
   return (
     <div className="space-y-3">
-      <p className="text-sm text-slate-500">Choose a template. You can switch anytime — your data is preserved.</p>
+      <p className="text-sm text-text-secondary">Choose a template. You can switch anytime — your data is preserved.</p>
       <div className="space-y-3">
         {templates.map((tpl) => (
           <button
@@ -37,7 +37,7 @@ export default function TemplateStep({ selected, onSelect }) {
             className={`w-full text-left p-4 rounded-xl border-2 transition-all flex items-start gap-4 ${
               selected === tpl.id
                 ? 'border-primary bg-blue-50 shadow-sm'
-                : 'border-border hover:border-slate-300 bg-white'
+                : 'border-border hover:border-border bg-surface'
             }`}
           >
             {/* Color swatch preview */}
@@ -55,13 +55,13 @@ export default function TemplateStep({ selected, onSelect }) {
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
                 <span className="font-semibold text-sm text-secondary">{tpl.name}</span>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-medium">{tpl.badge}</span>
+                <span className="text-xs px-2 py-0.5 rounded-full bg-background text-text-secondary font-medium">{tpl.badge}</span>
               </div>
-              <p className="text-xs text-slate-500 leading-relaxed">{tpl.description}</p>
+              <p className="text-xs text-text-secondary leading-relaxed">{tpl.description}</p>
             </div>
 
             <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-1 transition-all ${
-              selected === tpl.id ? 'border-primary bg-primary' : 'border-slate-300'
+              selected === tpl.id ? 'border-primary bg-primary' : 'border-border'
             }`}>
               {selected === tpl.id && <Check size={11} className="text-white" strokeWidth={3} />}
             </div>

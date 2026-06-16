@@ -16,7 +16,7 @@ export default function SummaryStep({ data, onChange }) {
   return (
     <div className="space-y-4">
       <div>
-        <label className="block text-sm font-medium text-slate-700 mb-1.5">
+        <label className="block text-sm font-medium text-foreground mb-1.5">
           Professional Summary
         </label>
         <textarea
@@ -27,10 +27,10 @@ export default function SummaryStep({ data, onChange }) {
           className="input-field resize-none"
         />
         <div className="flex justify-between mt-1.5">
-          <span className={`text-xs ${ideal ? 'text-green-500' : charCount > 0 ? 'text-yellow-500' : 'text-slate-400'}`}>
+          <span className={`text-xs ${ideal ? 'text-green-500' : charCount > 0 ? 'text-yellow-500' : 'text-text-secondary'}`}>
             {charCount > 0 ? (ideal ? '✓ Good length' : charCount < 150 ? 'Add a bit more detail' : 'Consider trimming') : 'Aim for 150–500 characters'}
           </span>
-          <span className="text-xs text-slate-400">{charCount} chars</span>
+          <span className="text-xs text-text-secondary">{charCount} chars</span>
         </div>
       </div>
 
@@ -41,7 +41,7 @@ export default function SummaryStep({ data, onChange }) {
         </div>
         <ul className="space-y-1.5">
           {tips.map((tip, i) => (
-            <li key={i} className="text-xs text-slate-600 flex items-start gap-2">
+            <li key={i} className="text-xs text-text-secondary flex items-start gap-2">
               <span className="text-primary mt-0.5 flex-shrink-0">•</span>
               {tip}
             </li>

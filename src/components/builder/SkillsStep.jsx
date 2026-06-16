@@ -34,8 +34,8 @@ export default function SkillsStep({ data, onAdd, onRemove }) {
     <div className="space-y-4">
       {/* Tag input area */}
       <div>
-        <label className="block text-sm font-medium text-slate-700 mb-1.5">Your Skills</label>
-        <div className="min-h-[100px] p-3 border border-border rounded-xl bg-white focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all">
+        <label className="block text-sm font-medium text-foreground mb-1.5">Your Skills</label>
+        <div className="min-h-[100px] p-3 border border-border rounded-xl bg-surface focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all">
           <div className="flex flex-wrap gap-2 mb-2">
             {data.map((skill) => (
               <span key={skill} className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 border border-blue-100 px-3 py-1 rounded-full text-xs font-medium">
@@ -60,18 +60,18 @@ export default function SkillsStep({ data, onAdd, onRemove }) {
             />
           </div>
         </div>
-        <p className="text-xs text-slate-400 mt-1.5">Press Enter or comma to add. Backspace to remove last.</p>
+        <p className="text-xs text-text-secondary mt-1.5">Press Enter or comma to add. Backspace to remove last.</p>
       </div>
 
       {/* Suggestions */}
       <div>
-        <p className="text-xs font-semibold text-slate-500 mb-2">Quick add popular skills:</p>
+        <p className="text-xs font-semibold text-text-secondary mb-2">Quick add popular skills:</p>
         <div className="flex flex-wrap gap-2">
           {suggestions.slice(0, 16).map((skill) => (
             <button
               key={skill}
               onClick={() => handleAdd(skill)}
-              className="text-xs px-3 py-1 rounded-full border border-slate-200 text-slate-600 hover:border-primary hover:text-primary hover:bg-blue-50 transition-all"
+              className="text-xs px-3 py-1 rounded-full border border-border text-text-secondary hover:border-primary hover:text-primary hover:bg-blue-50 transition-all"
             >
               + {skill}
             </button>
@@ -80,7 +80,7 @@ export default function SkillsStep({ data, onAdd, onRemove }) {
       </div>
 
       {data.length > 0 && (
-        <div className="text-xs text-slate-500 bg-slate-50 rounded-lg px-3 py-2">
+        <div className="text-xs text-text-secondary bg-background rounded-lg px-3 py-2">
           ✓ {data.length} skill{data.length !== 1 ? 's' : ''} added — aim for 6–10 for best ATS performance
         </div>
       )}

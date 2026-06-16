@@ -18,11 +18,11 @@ export default function PersonalInfoStep({ data, onChange }) {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {fields.map(({ key, label, placeholder, icon: Icon, type }) => (
           <div key={key} className={key === 'fullName' || key === 'title' ? 'sm:col-span-2' : ''}>
-            <label className="block text-sm font-medium text-slate-700 mb-1.5">
+            <label className="block text-sm font-medium text-foreground mb-1.5">
               {label}
             </label>
             <div className="relative">
-              <Icon size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+              <Icon size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-secondary pointer-events-none" />
               <input
                 type={type}
                 value={data[key] || ''}

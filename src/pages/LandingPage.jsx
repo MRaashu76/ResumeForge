@@ -5,58 +5,60 @@ import {
   ChevronDown, ChevronUp, ArrowRight, Layers, Cpu, Star, Briefcase, GraduationCap,
   Globe, Menu, X
 } from 'lucide-react'
+import ThemeToggle from '../components/ui/ThemeToggle'
 
 // ─── Navbar ───────────────────────────────────────────────────────────────────
 function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-border shadow-sm">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border shadow-sm">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center shadow-md">
-            <Zap size={16} className="text-white" />
-          </div>
-          <span className="font-extrabold text-lg text-secondary tracking-tight">ResumeForge</span>
+          <span className="font-extrabold text-xl text-foreground tracking-tight">ResumeForge</span>
         </Link>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-7">
           {['Features', 'Templates', 'FAQ'].map(item => (
-            <a key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium text-slate-600 hover:text-secondary transition-colors">
+            <a key={item} href={`#${item.toLowerCase()}`} className="text-sm font-medium text-text-secondary hover:text-foreground transition-colors">
               {item}
             </a>
           ))}
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           <Link
             to="/builder"
-            className="flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-xl text-sm font-semibold hover:bg-blue-600 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+            className="flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-xl text-sm font-semibold hover:bg-primary-hover transition-all shadow-[0_0_15px_rgba(249,115,22,0.3)] hover:-translate-y-0.5"
           >
             Create Resume <ArrowRight size={14} />
           </Link>
         </div>
 
         {/* Mobile menu button */}
-        <button
-          className="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors"
-          onClick={() => setOpen(o => !o)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            className="p-2 rounded-lg hover:bg-surface transition-colors text-foreground"
+            onClick={() => setOpen(o => !o)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-border bg-white px-4 py-4 space-y-3">
+        <div className="md:hidden border-t border-border bg-surface px-4 py-4 space-y-3">
           {['Features', 'Templates', 'FAQ'].map(item => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="block text-sm font-medium text-slate-600 hover:text-secondary py-1"
+              className="block text-sm font-medium text-text-secondary hover:text-foreground py-1"
               onClick={() => setOpen(false)}
             >
               {item}
@@ -64,7 +66,7 @@ function Navbar() {
           ))}
           <Link
             to="/builder"
-            className="block w-full text-center bg-primary text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-blue-600 transition-all"
+            className="block w-full text-center bg-primary text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-primary-hover transition-all"
             onClick={() => setOpen(false)}
           >
             Create Resume
@@ -78,44 +80,44 @@ function Navbar() {
 // ─── Hero ──────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white pt-20 pb-24 sm:pt-28 sm:pb-32">
+    <section className="relative overflow-hidden bg-background text-foreground pt-20 pb-24 sm:pt-28 sm:pb-32">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-        <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-surface rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
           <div className="space-y-7 animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/10 rounded-full px-4 py-1.5 text-sm font-medium text-blue-200">
+            <div className="inline-flex items-center gap-2 bg-surface backdrop-blur border border-border rounded-full px-4 py-1.5 text-sm font-medium text-foreground">
               <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
               100% Free · No sign-up required
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
               Create{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-text-secondary">
                 ATS-Friendly
               </span>{' '}
               Resumes Without the Complexity
             </h1>
 
-            <p className="text-lg text-slate-300 leading-relaxed max-w-lg">
+            <p className="text-lg text-text-secondary leading-relaxed max-w-lg">
               Design professional resumes, preview changes in real time, choose from modern templates, and export polished PDFs in minutes.
             </p>
 
             <div className="flex flex-wrap gap-3">
               <Link
                 to="/builder"
-                className="inline-flex items-center gap-2 bg-primary text-white px-7 py-3.5 rounded-xl text-base font-semibold hover:bg-blue-500 transition-all shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 bg-primary text-white px-7 py-3.5 rounded-xl text-base font-semibold hover:bg-primary-hover transition-all shadow-[0_0_15px_rgba(249,115,22,0.3)] hover:-translate-y-0.5"
               >
                 Create My Resume <ArrowRight size={16} />
               </Link>
               <a
                 href="#templates"
-                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur text-white border border-white/20 px-7 py-3.5 rounded-xl text-base font-semibold hover:bg-white/20 transition-all"
+                className="inline-flex items-center gap-2 bg-surface backdrop-blur text-foreground border border-border px-7 py-3.5 rounded-xl text-base font-semibold hover:bg-card transition-all"
               >
                 View Templates
               </a>
@@ -123,8 +125,8 @@ function Hero() {
 
             <div className="flex items-center gap-6 pt-2">
               {[['No subscription', Shield], ['Instant PDF', Download], ['Live preview', Eye]].map(([label, Icon]) => (
-                <div key={label} className="flex items-center gap-1.5 text-sm text-slate-400">
-                  <Icon size={13} className="text-blue-400" />
+                <div key={label} className="flex items-center gap-1.5 text-sm text-text-secondary">
+                  <Icon size={13} className="text-primary" />
                   {label}
                 </div>
               ))}
@@ -135,7 +137,7 @@ function Hero() {
           <div className="relative hidden lg:flex items-center justify-center animate-slide-in-right">
             <div className="relative">
               {/* Main resume card */}
-              <div className="w-72 h-96 bg-white rounded-2xl shadow-2xl overflow-hidden border border-white/10 rotate-1">
+              <div className="w-72 h-96 bg-card rounded-2xl shadow-2xl overflow-hidden border border-border rotate-1">
                 {/* Sidebar */}
                 <div className="flex h-full">
                   <div className="w-24 bg-slate-800 p-3 flex flex-col gap-2">
@@ -245,16 +247,16 @@ function Templates() {
     <section id="templates" className="py-20 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-secondary mb-4">Three Professional Templates</h2>
-          <p className="text-slate-500 text-lg max-w-xl mx-auto">Switch between templates instantly. Your data moves with you.</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mb-4">Three Professional Templates</h2>
+          <p className="text-text-secondary text-lg max-w-xl mx-auto">Switch between templates instantly. Your data moves with you.</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {templates.map((tpl) => (
             <div key={tpl.id} className="card overflow-hidden group hover:shadow-md hover:-translate-y-1 transition-all duration-300">
               {/* Template preview */}
-              <div className="h-52 bg-slate-50 p-4 flex items-center justify-center border-b border-border">
-                <div className="w-36 h-44 rounded-lg shadow-md overflow-hidden border border-slate-200">
+              <div className="h-52 bg-surface p-4 flex items-center justify-center border-b border-border">
+                <div className="w-36 h-44 rounded-lg shadow-md overflow-hidden border border-border">
                   <div className="flex h-full">
                     {tpl.id === 'modern' && (
                       <>
@@ -302,13 +304,13 @@ function Templates() {
 
               <div className="p-5">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-bold text-secondary">{tpl.name}</h3>
+                  <h3 className="font-bold text-foreground">{tpl.name}</h3>
                   <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${tpl.badgeColor}`}>{tpl.badge}</span>
                 </div>
-                <p className="text-sm text-slate-500 leading-relaxed mb-4">{tpl.desc}</p>
+                <p className="text-sm text-text-secondary leading-relaxed mb-4">{tpl.desc}</p>
                 <Link
                   to="/builder"
-                  className="w-full flex items-center justify-center gap-2 border border-border text-secondary text-sm font-semibold py-2 rounded-xl hover:border-primary hover:text-primary hover:bg-blue-50 transition-all"
+                  className="w-full flex items-center justify-center gap-2 border border-border text-foreground text-sm font-semibold py-2 rounded-xl hover:border-primary hover:text-primary hover:bg-surface transition-all"
                 >
                   Use Template <ArrowRight size={13} />
                 </Link>
@@ -333,21 +335,21 @@ function Features() {
   ]
 
   return (
-    <section id="features" className="py-20 bg-white">
+    <section id="features" className="py-20 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-secondary mb-4">Why ResumeForge</h2>
-          <p className="text-slate-500 text-lg max-w-lg mx-auto">Everything you need to write a resume that gets interviews — nothing you don't.</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mb-4">Why ResumeForge</h2>
+          <p className="text-text-secondary text-lg max-w-lg mx-auto">Everything you need to write a resume that gets interviews — nothing you don't.</p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {features.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="group p-6 rounded-2xl border border-border hover:border-primary/30 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 bg-white">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-105 transition-all">
-                <Icon size={18} className="text-primary group-hover:text-white transition-colors" />
+            <div key={title} className="group p-6 rounded-2xl border border-border hover:border-primary/30 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 bg-card">
+              <div className="w-10 h-10 rounded-xl bg-surface flex items-center justify-center mb-4 group-hover:bg-primary group-hover:scale-105 transition-all">
+                <Icon size={18} className="text-primary group-hover:text-foreground transition-colors" />
               </div>
-              <h3 className="font-bold text-secondary mb-1.5">{title}</h3>
-              <p className="text-sm text-slate-500 leading-relaxed">{desc}</p>
+              <h3 className="font-bold text-foreground mb-1.5">{title}</h3>
+              <p className="text-sm text-text-secondary leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>
@@ -368,19 +370,19 @@ function BuiltFor() {
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+    <section className="py-20 bg-surface text-foreground">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">Built for Everyone</h2>
-          <p className="text-slate-400 text-lg max-w-lg mx-auto">Whether you're just starting out or pivoting careers, ResumeForge meets you where you are.</p>
+          <p className="text-text-secondary text-lg max-w-lg mx-auto">Whether you're just starting out or pivoting careers, ResumeForge meets you where you are.</p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {profiles.map(({ icon: Icon, label, desc }) => (
-            <div key={label} className="p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all">
-              <Icon size={20} className="text-blue-400 mb-3" />
-              <div className="font-bold text-white mb-1">{label}</div>
-              <div className="text-sm text-slate-400">{desc}</div>
+            <div key={label} className="p-5 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all">
+              <Icon size={20} className="text-primary mb-3" />
+              <div className="font-bold text-foreground mb-1">{label}</div>
+              <div className="text-sm text-text-secondary">{desc}</div>
             </div>
           ))}
         </div>
@@ -401,8 +403,8 @@ function HowItWorks() {
     <section className="py-20 bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-secondary mb-4">How It Works</h2>
-          <p className="text-slate-500 text-lg">From blank page to finished resume in minutes.</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mb-4">How It Works</h2>
+          <p className="text-text-secondary text-lg">From blank page to finished resume in minutes.</p>
         </div>
 
         <div className="relative">
@@ -412,11 +414,11 @@ function HowItWorks() {
           <div className="grid md:grid-cols-3 gap-8">
             {steps.map(({ n, title, desc }) => (
               <div key={n} className="relative text-center">
-                <div className="w-16 h-16 rounded-2xl bg-primary text-white text-xl font-extrabold flex items-center justify-center mx-auto mb-5 shadow-lg shadow-primary/25 relative z-10">
+                <div className="w-16 h-16 rounded-2xl bg-primary text-white text-xl font-extrabold flex items-center justify-center mx-auto mb-5 shadow-[0_0_15px_rgba(249,115,22,0.3)] relative z-10">
                   {n}
                 </div>
-                <h3 className="text-xl font-bold text-secondary mb-3">{title}</h3>
-                <p className="text-slate-500 leading-relaxed text-sm">{desc}</p>
+                <h3 className="text-xl font-bold text-foreground mb-3">{title}</h3>
+                <p className="text-text-secondary leading-relaxed text-sm">{desc}</p>
               </div>
             ))}
           </div>
@@ -425,7 +427,7 @@ function HowItWorks() {
         <div className="text-center mt-14">
           <Link
             to="/builder"
-            className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-2xl text-base font-bold hover:bg-blue-600 transition-all shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-2xl text-base font-bold hover:bg-primary-hover transition-all shadow-[0_0_15px_rgba(249,115,22,0.3)] hover:-translate-y-0.5"
           >
             Start Building Now <ArrowRight size={16} />
           </Link>
@@ -467,29 +469,29 @@ function FAQ() {
   ]
 
   return (
-    <section id="faq" className="py-20 bg-white">
+    <section id="faq" className="py-20 bg-background">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-secondary mb-4">Frequently Asked Questions</h2>
-          <p className="text-slate-500 text-lg">Answers to the most common questions.</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground mb-4">Frequently Asked Questions</h2>
+          <p className="text-text-secondary text-lg">Answers to the most common questions.</p>
         </div>
 
         <div className="space-y-3">
           {faqs.map((faq, idx) => (
             <div key={idx} className="border border-border rounded-2xl overflow-hidden">
               <button
-                className="w-full text-left px-6 py-4 flex items-center justify-between gap-4 hover:bg-slate-50 transition-colors"
+                className="w-full text-left px-6 py-4 flex items-center justify-between gap-4 hover:bg-surface transition-colors"
                 onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
                 aria-expanded={openIdx === idx}
               >
-                <span className="font-semibold text-secondary text-sm">{faq.q}</span>
+                <span className="font-semibold text-foreground text-sm">{faq.q}</span>
                 {openIdx === idx
-                  ? <ChevronUp size={16} className="text-slate-400 flex-shrink-0" />
-                  : <ChevronDown size={16} className="text-slate-400 flex-shrink-0" />
+                  ? <ChevronUp size={16} className="text-text-secondary flex-shrink-0" />
+                  : <ChevronDown size={16} className="text-text-secondary flex-shrink-0" />
                 }
               </button>
               {openIdx === idx && (
-                <div className="px-6 pb-4 text-sm text-slate-600 leading-relaxed border-t border-border pt-3">
+                <div className="px-6 pb-4 text-sm text-text-secondary leading-relaxed border-t border-border pt-3">
                   {faq.a}
                 </div>
               )}
@@ -504,13 +506,13 @@ function FAQ() {
 // ─── CTA ──────────────────────────────────────────────────────────────────────
 function CTA() {
   return (
-    <section className="py-20 bg-gradient-to-br from-primary to-blue-700 text-white">
+    <section className="py-20 bg-card border-y border-border text-foreground">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
         <h2 className="text-3xl sm:text-4xl font-extrabold mb-5">Your next role starts with a strong resume.</h2>
-        <p className="text-blue-100 text-lg mb-8 max-w-lg mx-auto">Build yours in minutes — free, in your browser, with no account required.</p>
+        <p className="text-text-secondary text-lg mb-8 max-w-lg mx-auto">Build yours in minutes — free, in your browser, with no account required.</p>
         <Link
           to="/builder"
-          className="inline-flex items-center gap-2 bg-white text-primary px-8 py-4 rounded-2xl text-base font-bold hover:bg-blue-50 transition-all shadow-xl hover:-translate-y-0.5"
+          className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-2xl text-base font-bold hover:bg-primary-hover transition-all shadow-[0_0_15px_rgba(249,115,22,0.3)] hover:-translate-y-0.5"
         >
           Create My Resume <ArrowRight size={16} />
         </Link>
@@ -522,31 +524,28 @@ function CTA() {
 // ─── Footer ───────────────────────────────────────────────────────────────────
 function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-400 py-12 px-4 sm:px-6">
+    <footer className="bg-background text-text-secondary border-t border-border py-12 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid sm:grid-cols-3 gap-8 mb-10">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-                <Zap size={13} className="text-white" />
-              </div>
-              <span className="font-extrabold text-white">ResumeForge</span>
+              <span className="font-extrabold text-foreground text-lg">ResumeForge</span>
             </div>
             <p className="text-sm leading-relaxed">Build professional resumes with confidence.</p>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-3 text-sm">Product</h4>
+            <h4 className="text-foreground font-semibold mb-3 text-sm">Product</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
-              <li><a href="#templates" className="hover:text-white transition-colors">Templates</a></li>
-              <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
-              <li><Link to="/builder" className="hover:text-white transition-colors">Create Resume</Link></li>
+              <li><a href="#features" className="hover:text-foreground transition-colors">Features</a></li>
+              <li><a href="#templates" className="hover:text-foreground transition-colors">Templates</a></li>
+              <li><a href="#faq" className="hover:text-foreground transition-colors">FAQ</a></li>
+              <li><Link to="/builder" className="hover:text-foreground transition-colors">Create Resume</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-3 text-sm">Info</h4>
+            <h4 className="text-foreground font-semibold mb-3 text-sm">Info</h4>
             <ul className="space-y-2 text-sm">
               <li>No account required</li>
               <li>Data stays in your browser</li>
@@ -555,13 +554,13 @@ function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+        <div className="border-t border-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
           <p>© {new Date().getFullYear()} ResumeForge. All rights reserved.</p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 text-center">
-            <div className="text-slate-500">
-              Created by: <span className="text-slate-300">ResumeForge Team</span> ·{' '}
-              <a href="mailto:hello@resumeforge.dev" className="text-slate-300 hover:text-white transition-colors">hello@resumeforge.dev</a>
+            <div className="text-text-secondary">
+              Created by: <span className="text-foreground">Aashish Kumar Das</span> ·{' '}
+              <a href="mailto:aashishkumards123@gmail.com" className="text-foreground hover:text-primary transition-colors">aashishkumards123@gmail.com</a>
             </div>
 
             <a

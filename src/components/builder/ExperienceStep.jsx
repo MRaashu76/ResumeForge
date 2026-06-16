@@ -6,23 +6,23 @@ function ExperienceForm({ data, setData }) {
   return (
     <div className="grid grid-cols-2 gap-3">
       <div className="col-span-2">
-        <label className="block text-xs font-medium text-slate-600 mb-1">Job Title</label>
+        <label className="block text-xs font-medium text-text-secondary mb-1">Job Title</label>
         <input className="input-field" placeholder="e.g. Senior Frontend Engineer" value={data.jobTitle || ''} onChange={e => set('jobTitle', e.target.value)} />
       </div>
       <div className="col-span-2">
-        <label className="block text-xs font-medium text-slate-600 mb-1">Company</label>
+        <label className="block text-xs font-medium text-text-secondary mb-1">Company</label>
         <input className="input-field" placeholder="e.g. Stripe" value={data.company || ''} onChange={e => set('company', e.target.value)} />
       </div>
       <div>
-        <label className="block text-xs font-medium text-slate-600 mb-1">Start Date</label>
+        <label className="block text-xs font-medium text-text-secondary mb-1">Start Date</label>
         <input className="input-field" placeholder="Jan 2021" value={data.startDate || ''} onChange={e => set('startDate', e.target.value)} />
       </div>
       <div>
-        <label className="block text-xs font-medium text-slate-600 mb-1">End Date</label>
+        <label className="block text-xs font-medium text-text-secondary mb-1">End Date</label>
         <input className="input-field" placeholder="Present" value={data.endDate || ''} onChange={e => set('endDate', e.target.value)} />
       </div>
       <div className="col-span-2">
-        <label className="block text-xs font-medium text-slate-600 mb-1">Description</label>
+        <label className="block text-xs font-medium text-text-secondary mb-1">Description</label>
         <textarea
           className="input-field resize-none"
           rows={4}
@@ -40,7 +40,7 @@ function ExperiencePreview({ item }) {
     <div>
       <div className="font-semibold text-sm text-secondary">{item.jobTitle || 'Untitled Role'}</div>
       <div className="text-xs text-primary mt-0.5">{item.company}</div>
-      <div className="text-xs text-slate-400 mt-0.5">{item.startDate}{item.endDate ? ` – ${item.endDate}` : ''}</div>
+      <div className="text-xs text-text-secondary mt-0.5">{item.startDate}{item.endDate ? ` – ${item.endDate}` : ''}</div>
     </div>
   )
 }

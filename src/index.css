@@ -3,39 +3,67 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-background: 248 250 252;
+    --color-surface: 255 255 255;
+    --color-card: 241 245 249;
+    --color-border: 226 232 240;
+    --color-text-primary: 15 23 42;
+    --color-text-secondary: 100 116 139;
+    --color-primary: 249 115 22;
+    --color-primary-hover: 234 88 12;
+    --color-success: 34 197 94;
+    --color-warning: 245 158 11;
+  }
+  
+  .dark {
+    --color-background: 5 5 5;
+    --color-surface: 17 17 17;
+    --color-card: 23 23 23;
+    --color-border: 39 39 42;
+    --color-text-primary: 255 255 255;
+    --color-text-secondary: 161 161 170;
+    --color-primary: 249 115 22;
+    --color-primary-hover: 234 88 12;
+    --color-success: 34 197 94;
+    --color-warning: 245 158 11;
+  }
+
   * {
     box-sizing: border-box;
   }
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    background-color: #F8FAFC;
-    color: #0F172A;
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-text-primary));
     -webkit-font-smoothing: antialiased;
   }
 }
 
 @layer components {
   .glass {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: rgb(var(--color-surface) / 0.7);
+    @apply backdrop-blur-[12px] border border-border;
   }
   
   .btn-primary {
-    @apply bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-600 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
+    @apply bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-primary-hover transition-all duration-200 shadow-[0_0_15px_rgba(249,115,22,0.3)] hover:shadow-[0_0_25px_rgba(249,115,22,0.5)] hover:-translate-y-0.5 active:translate-y-0;
   }
   
   .btn-secondary {
-    @apply bg-white text-secondary border border-border px-6 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-200 shadow-sm hover:shadow-md;
+    @apply bg-surface text-white border border-border px-6 py-3 rounded-xl font-semibold hover:bg-card transition-all duration-200 shadow-sm hover:shadow-md;
   }
 
   .input-field {
-    @apply w-full px-4 py-3 rounded-xl border border-border bg-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 text-sm text-secondary placeholder-gray-400;
+    @apply w-full px-4 py-3 rounded-xl border border-border bg-surface focus:outline-none focus:border-primary transition-all duration-200 text-sm text-foreground placeholder-text-secondary;
+  }
+
+  .input-field:focus {
+    box-shadow: 0 0 0 2px rgb(var(--color-primary) / 0.2);
   }
 
   .card {
-    @apply bg-white rounded-2xl border border-border shadow-sm;
+    @apply bg-card rounded-2xl border border-border shadow-sm;
   }
 }
 
@@ -44,14 +72,14 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F5F9;
+  background: rgb(var(--color-background));
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: rgb(var(--color-border));
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: rgb(var(--color-text-secondary));
 }
 
 /* Animations */
@@ -71,9 +99,9 @@
 }
 
 @keyframes pulse-ring {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.4); }
-  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(33, 150, 243, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(33, 150, 243, 0); }
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
 }
 
 .animate-float { animation: float 3s ease-in-out infinite; }

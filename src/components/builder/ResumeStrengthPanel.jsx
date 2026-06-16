@@ -22,13 +22,13 @@ export default function ResumeStrengthPanel({ data }) {
           <h4 className="text-sm font-semibold text-secondary">Resume Strength</h4>
           <div className="flex items-center gap-2 mt-0.5">
             <span className="text-xs font-semibold" style={{ color }}>{label}</span>
-            <span className="text-xs text-slate-400">· {overall}% complete</span>
+            <span className="text-xs text-text-secondary">· {overall}% complete</span>
           </div>
         </div>
       </div>
 
       {/* Overall bar */}
-      <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+      <div className="h-2 bg-background rounded-full overflow-hidden">
         <div
           className="h-full rounded-full transition-all duration-700"
           style={{ width: `${overall}%`, background: color }}
@@ -51,8 +51,8 @@ export default function ResumeStrengthPanel({ data }) {
                 />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-xs text-slate-600 truncate">{section.label}</div>
-                <div className="h-1 bg-slate-100 rounded-full mt-0.5 overflow-hidden">
+                <div className="text-xs text-text-secondary truncate">{section.label}</div>
+                <div className="h-1 bg-background rounded-full mt-0.5 overflow-hidden">
                   <div
                     className="h-full rounded-full transition-all duration-500"
                     style={{

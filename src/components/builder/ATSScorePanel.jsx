@@ -18,7 +18,7 @@ export default function ATSScorePanel({ data }) {
       <div className="flex items-center justify-between">
         <div>
           <h4 className="text-sm font-semibold text-secondary">ATS Readiness</h4>
-          <p className="text-xs text-slate-400 mt-0.5">Applicant Tracking System score</p>
+          <p className="text-xs text-text-secondary mt-0.5">Applicant Tracking System score</p>
         </div>
         <CircularProgress value={score} size={64} strokeWidth={5} color={color} />
       </div>
@@ -32,10 +32,10 @@ export default function ATSScorePanel({ data }) {
             />
             <div className="flex-1 min-w-0">
               <div className="flex justify-between text-xs">
-                <span className="text-slate-600 truncate">{item.label}</span>
-                <span className="font-medium text-slate-700 ml-1">{item.score}/{item.max}</span>
+                <span className="text-text-secondary truncate">{item.label}</span>
+                <span className="font-medium text-foreground ml-1">{item.score}/{item.max}</span>
               </div>
-              <div className="h-1 bg-slate-100 rounded-full mt-1 overflow-hidden">
+              <div className="h-1 bg-background rounded-full mt-1 overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-500"
                   style={{

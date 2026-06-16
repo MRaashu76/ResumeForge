@@ -6,15 +6,15 @@ function CertForm({ data, setData }) {
   return (
     <div className="space-y-3">
       <div>
-        <label className="block text-xs font-medium text-slate-600 mb-1">Certification Name</label>
+        <label className="block text-xs font-medium text-text-secondary mb-1">Certification Name</label>
         <input className="input-field" placeholder="e.g. AWS Certified Solutions Architect" value={data.name || ''} onChange={e => set('name', e.target.value)} />
       </div>
       <div>
-        <label className="block text-xs font-medium text-slate-600 mb-1">Issuing Organization</label>
+        <label className="block text-xs font-medium text-text-secondary mb-1">Issuing Organization</label>
         <input className="input-field" placeholder="e.g. Amazon Web Services" value={data.organization || ''} onChange={e => set('organization', e.target.value)} />
       </div>
       <div>
-        <label className="block text-xs font-medium text-slate-600 mb-1">Year Obtained</label>
+        <label className="block text-xs font-medium text-text-secondary mb-1">Year Obtained</label>
         <input className="input-field" placeholder="2023" value={data.year || ''} onChange={e => set('year', e.target.value)} />
       </div>
     </div>
@@ -25,8 +25,8 @@ function CertPreview({ item }) {
   return (
     <div>
       <div className="font-semibold text-sm text-secondary">{item.name || 'Untitled Certification'}</div>
-      <div className="text-xs text-slate-500 mt-0.5">{item.organization}</div>
-      {item.year && <div className="text-xs text-slate-400 mt-0.5">{item.year}</div>}
+      <div className="text-xs text-text-secondary mt-0.5">{item.organization}</div>
+      {item.year && <div className="text-xs text-text-secondary mt-0.5">{item.year}</div>}
     </div>
   )
 }
