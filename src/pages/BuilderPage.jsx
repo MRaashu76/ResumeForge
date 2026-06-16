@@ -272,7 +272,7 @@ export default function BuilderPage() {
       </div>
 
       {/* Hidden full-size export element */}
-      <div style={{ position: 'fixed', left: '200vw', top: 0, width: '794px', pointerEvents: 'none' }}>
+      <div className="absolute top-[-9999px] left-[-9999px]">
         <ResumePreview data={resumeData} id="resume-export" />
       </div>
     </div>
