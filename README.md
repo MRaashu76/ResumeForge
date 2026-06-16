@@ -101,5 +101,5 @@ The `vercel.json` handles SPA routing so direct `/builder` URLs work correctly.
 ## Credits
 
 - Built for [Digital Heroes](https://digitalheroesco.com)
-- Created by: ResumeForge Team
-- Contact: hello@resumeforge.dev
+- Created by: Aashish Kumar Das
+- Contact: aashishkumards123@gmail.com
