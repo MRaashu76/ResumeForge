@@ -60,6 +60,7 @@ export async function exportToPDF(elementId, filename = 'resume.pdf') {
     return true
   } catch (err) {
     console.error('PDF export failed:', err)
+    alert('PDF Export Failed: ' + err.message)
     return false
   }
 }
